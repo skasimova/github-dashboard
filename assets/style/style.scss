@@ -1,0 +1,20 @@
+body {
+  font-family: 'Nunito', sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+
+  & > main {
+    padding-top: 3vh;
+    padding-bottom: 8vh;
+    flex: 1 0 auto;
+  }
+
+  & > footer {
+    padding-bottom: 8vh;
+    flex: 0 0 auto;
+    .copyright {
+      text-align: center;
+    }
+  }
+}
