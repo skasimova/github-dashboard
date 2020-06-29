@@ -1,13 +1,21 @@
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Raleway', sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+
+  & > header {
+    text-align: center;
+  }
 
   & > main {
     padding-top: 3vh;
     padding-bottom: 8vh;
     flex: 1 0 auto;
+
+    .container {
+      text-align: center;
+    }
   }
 
   & > footer {
@@ -18,3 +26,92 @@ body {
     }
   }
 }
+
+.repos-list {
+  padding-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+    .repo {
+      display: flex;
+
+      .repo-name {
+        border: 3px solid #73AD21;
+        flex: 1 0 21%;
+      }
+
+      .repo-stars {
+        border: 3px solid #73AD21;
+        flex: 1 0 21%;
+      }
+
+      .repo-last-commit {
+        border: 3px solid #73AD21;
+        flex: 1 0 21%;
+      }
+
+      .repo-link {
+        border: 3px solid #73AD21;
+        flex: 1 0 21%;
+      }
+    }
+}
+
+.repo-selected {
+  display: flex;
+  flex-direction: column;
+
+  .repo-header {
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+
+    .repo-name {
+      border: 3px solid #73AD21;
+      flex: 1 0 33%;
+    }
+
+    .repo-stars {
+      border: 3px solid #73AD21;
+      flex: 1 0 33%;
+    }
+
+    .repo-last-commit {
+      border: 3px solid #73AD21;
+      flex: 1 0 33%;
+    }
+  }
+  .repo-owner {
+    border: 3px solid #73AD21;
+    flex: 1 0 21%;
+
+    .repo-img {
+      border: 3px solid #73AD21;
+      flex: 1 0 50%;
+    }
+
+    .repo-nickname {
+      border: 3px solid #73AD21;
+      flex: 1 0 50%;
+    }
+  }
+
+  .repo-languages {
+    border: 3px solid #73AD21;
+    flex: 1 0 100%;
+  }
+
+  .repo-description {
+    border: 3px solid #73AD21;
+    flex: 1 0 100%;
+  }
+
+  .repo-contributors {
+    border: 3px solid #73AD21;
+    flex: 1 0 100%;
+  }
+}
+

@@ -1,13 +1,19 @@
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Raleway", sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+}
+body > header {
+  text-align: center;
 }
 body > main {
   padding-top: 3vh;
   padding-bottom: 8vh;
   flex: 1 0 auto;
+}
+body > main .container {
+  text-align: center;
 }
 body > footer {
   padding-bottom: 8vh;
@@ -15,6 +21,80 @@ body > footer {
 }
 body > footer .copyright {
   text-align: center;
+}
+
+.repos-list {
+  padding-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.repos-list .repo {
+  display: flex;
+}
+.repos-list .repo .repo-name {
+  border: 3px solid #73AD21;
+  flex: 1 0 21%;
+}
+.repos-list .repo .repo-stars {
+  border: 3px solid #73AD21;
+  flex: 1 0 21%;
+}
+.repos-list .repo .repo-last-commit {
+  border: 3px solid #73AD21;
+  flex: 1 0 21%;
+}
+.repos-list .repo .repo-link {
+  border: 3px solid #73AD21;
+  flex: 1 0 21%;
+}
+
+.repo-selected {
+  display: flex;
+  flex-direction: column;
+}
+.repo-selected .repo-header {
+  padding-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+.repo-selected .repo-header .repo-name {
+  border: 3px solid #73AD21;
+  flex: 1 0 33%;
+}
+.repo-selected .repo-header .repo-stars {
+  border: 3px solid #73AD21;
+  flex: 1 0 33%;
+}
+.repo-selected .repo-header .repo-last-commit {
+  border: 3px solid #73AD21;
+  flex: 1 0 33%;
+}
+.repo-selected .repo-owner {
+  border: 3px solid #73AD21;
+  flex: 1 0 21%;
+}
+.repo-selected .repo-owner .repo-img {
+  border: 3px solid #73AD21;
+  flex: 1 0 50%;
+}
+.repo-selected .repo-owner .repo-nickname {
+  border: 3px solid #73AD21;
+  flex: 1 0 50%;
+}
+.repo-selected .repo-languages {
+  border: 3px solid #73AD21;
+  flex: 1 0 100%;
+}
+.repo-selected .repo-description {
+  border: 3px solid #73AD21;
+  flex: 1 0 100%;
+}
+.repo-selected .repo-contributors {
+  border: 3px solid #73AD21;
+  flex: 1 0 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
