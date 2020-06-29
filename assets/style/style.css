@@ -24,7 +24,6 @@ body > footer .copyright {
 }
 
 .repos-list {
-  padding-top: 20px;
   text-align: center;
   display: flex;
   flex-direction: column;
