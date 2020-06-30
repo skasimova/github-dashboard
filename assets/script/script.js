@@ -11,7 +11,7 @@ function createRepos() {
 
     let stars = document.createElement('div');
     stars.setAttribute('class', 'repo-stars');
-    stars.innerText = '⭐2';
+    stars.innerText = 'STARS';
 
     let lastCommit = document.createElement('div');
     lastCommit.setAttribute('class', 'repo-last-commit');
@@ -40,12 +40,72 @@ for (let i = 1; i <= 10; ++i) {
     createRepos(i);
 }
 
+async function getMostPopular() {
+    let url = 'https://api.github.com/search/repositories?q=stars:>100&per_page=10';
 
-// todo незаконченная штука (как забрать что-то определённое и хотя бы алёртнуть это?)
-async function getSmth() {
-    let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
-// получить один заголовок
-    alert(response.headers.get('Content-Type'));
+    let response = await fetch(url);
+
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+                       // получаем тело ответа (см. про этот метод ниже)
+        let result = await response.json();
+
+        console.log(result);
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
 }
 
-getSmth();
+getMostPopular();
+
+// работает но нужно текстом записать языки, а не JSON чтоб выводился
+async function getLanguages() {
+    let url = 'https://api.github.com/repos/sasharaeburn/fortune-cookie/languages';
+
+    let response = await fetch(url);
+
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+        // получаем тело ответа (см. про этот метод ниже)
+        let result = await response.json();
+
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+}
+
+getLanguages();
+
+// вроде работает
+async function getStars() {
+    let url = 'https://api.github.com/repos/sasharaeburn/fortune-cookie/stargazers';
+
+    let response = await fetch(url);
+
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+        // получаем тело ответа (см. про этот метод ниже)
+        let result = await response.json();
+
+        console.log(result.length);
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+}
+
+getStars();
+
+// работает
+async function getDescription() {
+    let url = 'https://api.github.com/repos/sasharaeburn/fortune-cookie';
+
+    let response = await fetch(url);
+
+    if (response.ok) { // если HTTP-статус в диапазоне 200-299
+        // получаем тело ответа (см. про этот метод ниже)
+        let result = await response.json();
+
+        console.log(result.description);
+    } else {
+        alert("Ошибка HTTP: " + response.status);
+    }
+}
+
+getDescription();
