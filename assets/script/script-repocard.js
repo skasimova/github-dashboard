@@ -16,20 +16,11 @@ async function request(path) {
     }
 }
 
-// "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
-function getMostPopular() {
-    request('/search/repositories?q=stars:>100&per_page=10').then(data => createRepos(data.items));
-}
-
 function initialization() {
-    getMostPopular();
+    createRepo();
 }
 
 initialization();
-
-function createRepos(repositories) {
-    repositories.forEach(repository => createRepo(repository));
-}
 
 function createRepo(repository) {
     console.log(repository);
