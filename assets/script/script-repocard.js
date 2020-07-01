@@ -16,55 +16,82 @@ async function request(path) {
     }
 }
 
+
 function initialization() {
-    createRepo();
+    let repoName = new URL(window.location)
+        .searchParams
+        .get('repo');
+
+    request('/repos/' + repoName).then(data => createRepo(data));
 }
 
 initialization();
 
-function createRepo(repository) {
-    console.log(repository);
-
-    const reposList = document.createElement('div');
-    reposList.setAttribute('class', 'repos-list');
+function createRepo(data) {
+    const repoSelected = document.createElement('div');
+    repoSelected.setAttribute('class', 'repo-selected');
 
     const repo = document.createElement('div');
     repo.setAttribute('class', 'repo');
 
+    let repoHeader = document.createElement('div');
+    repoHeader.setAttribute('class', 'repo-header');
+
+    repoSelected.appendChild(repoHeader);
+
     let repoName = document.createElement('div');
     repoName.setAttribute('class', 'repo-name');
-
-    let repoCardLink = document.createElement('a')
-    repoCardLink.setAttribute('href', 'repocard.html?name=' + repository.name);
-    repoCardLink.innerText = repository.name;
-
-    repoName.appendChild(repoCardLink);
+    repoName.innerHTML = data.name;
 
     let stars = document.createElement('div');
     stars.setAttribute('class', 'repo-stars');
-    stars.innerText = '⭐' + repository.stargazers_count;
+    stars.innerText = '⭐' + data.stargazers_count;
 
     let lastCommit = document.createElement('div');
     lastCommit.setAttribute('class', 'repo-last-commit');
-    lastCommit.innerText = repository.updated_at;
+    lastCommit.innerText = data.updated_at;
 
-    let repoLink = document.createElement('div');
-    repoLink.setAttribute('class', 'repo-link');
+    repoHeader.appendChild(repoName);
+    repoHeader.appendChild(stars);
+    repoHeader.appendChild(lastCommit);
 
-    let githubLink = document.createElement('a');
-    githubLink.setAttribute('href', repository.url)
-    githubLink.innerText = repository.url;
+    const repoOwner = document.createElement('div');
+    repoOwner.setAttribute('class', 'repo-owner');
 
-    repoLink.appendChild(githubLink);
+    const profilePic = document.createElement('img');
+    profilePic.setAttribute('src', data.owner.avatar_url);
 
-    repo.appendChild(repoName);
-    repo.appendChild(stars);
-    repo.appendChild(lastCommit);
-    repo.appendChild(repoLink);
+    const githubLink = document.createElement('a');
+    githubLink.setAttribute('href', data.owner.html_url);
+    githubLink.innerText = data.owner.login;
 
-    reposList.appendChild(repo);
+    repoOwner.appendChild(profilePic);
+    repoOwner.appendChild(githubLink);
+
+    repoSelected.appendChild(repoOwner);
+
+    const repoLangs = document.createElement('div');
+    repoLangs.setAttribute('class', 'repo-languages');
+    // todo сделать так, чтобы считывал все языки! через .languages почему-то не работает
+    repoLangs.innerText = data.language; //не уверена насчёт этого!!
+
+    const description = document.createElement('div');
+    description.setAttribute('class', 'repo-description');
+    description.innerText = data.description;
+
+    const contributors = document.createElement('div');
+    contributors.setAttribute('class', 'repo-contributors');
+    contributors.innerText = data.contributors_url[0].login;
+
+    repo.appendChild(repoHeader);
+    repo.appendChild(repoOwner);
+    repo.appendChild(repoLangs);
+    repo.appendChild(description);
+    repo.appendChild(contributors);
+
+    repoSelected.appendChild(repo);
 
     let container = document.getElementById('container');
 
-    container.appendChild(reposList);
+    container.appendChild(repoSelected);
 }

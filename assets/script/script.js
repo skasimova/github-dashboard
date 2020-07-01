@@ -16,16 +16,29 @@ async function request(path) {
     }
 }
 
-// "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
-function getMostPopular() {
-    request('/search/repositories?q=stars:>100&per_page=10').then(data => createRepos(data.items));
-}
+
 
 function initialization() {
     getMostPopular();
 }
 
 initialization();
+
+// "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
+function getMostPopular() {
+    request('/search/repositories?q=stars:>100&per_page=10').then(data => createRepos(data.items));
+}
+
+//todo сюда пойдёт ф-я (с привязкой к кнопке, которая вызовется, если задан конкретный юзер - показать его репы)
+
+// const inputForm = document.getElementById('input-form');
+//
+// function getRepo() {
+//     inputForm.addEventListener('submit', event => {
+//         const repo = inputForm.value;
+//         request('/search/repositories').then(data => createRepos(data.items)); НЕ ДОДЕЛАНО
+//     })
+// }
 
 function createRepos(repositories) {
     repositories.forEach(repository => createRepo(repository));
@@ -34,8 +47,7 @@ function createRepos(repositories) {
 function createRepo(repository) {
     console.log(repository);
 
-    const reposList = document.createElement('div');
-    reposList.setAttribute('class', 'repos-list');
+    const reposList = document.getElementById('repos-list');
 
     const repo = document.createElement('div');
     repo.setAttribute('class', 'repo');
@@ -44,7 +56,7 @@ function createRepo(repository) {
     repoName.setAttribute('class', 'repo-name');
 
     let repoCardLink = document.createElement('a')
-    repoCardLink.setAttribute('href', 'repocard.html?name=' + repository.name);
+    repoCardLink.setAttribute('href', 'repocard.html?repo=' + repository.full_name);
     repoCardLink.innerText = repository.name;
 
     repoName.appendChild(repoCardLink);
@@ -61,8 +73,8 @@ function createRepo(repository) {
     repoLink.setAttribute('class', 'repo-link');
 
     let githubLink = document.createElement('a');
-    githubLink.setAttribute('href', repository.url)
-    githubLink.innerText = repository.url;
+    githubLink.setAttribute('href', repository.html_url)
+    githubLink.innerText = 'Github';
 
     repoLink.appendChild(githubLink);
 

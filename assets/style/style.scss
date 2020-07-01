@@ -12,10 +12,6 @@ body {
     padding-top: 3vh;
     padding-bottom: 8vh;
     flex: 1 0 auto;
-
-    .container {
-      text-align: center;
-    }
   }
 
   & > footer {
@@ -27,33 +23,38 @@ body {
   }
 }
 
+.search-field {
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
 .repos-list {
   text-align: center;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 
     .repo {
       display: flex;
+      justify-content: center;
 
       .repo-name {
         border: 3px solid #73AD21;
-        flex: 1 0 21%;
+        flex-basis: 21%;
       }
 
       .repo-stars {
         border: 3px solid #73AD21;
-        flex: 1 0 21%;
+        flex-basis: 21%;
       }
 
       .repo-last-commit {
         border: 3px solid #73AD21;
-        flex: 1 0 21%;
+        flex-basis: 21%;
       }
 
       .repo-link {
         border: 3px solid #73AD21;
-        flex: 1 0 21%;
+        flex-basis: 21%;
       }
     }
 }
@@ -61,6 +62,8 @@ body {
 .repo-selected {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 
   .repo-header {
     padding-top: 20px;
@@ -70,31 +73,31 @@ body {
 
     .repo-name {
       border: 3px solid #73AD21;
-      flex: 1 0 33%;
+      flex-basis: 33%;
     }
 
     .repo-stars {
       border: 3px solid #73AD21;
-      flex: 1 0 33%;
+      flex-basis: 33%;
     }
 
     .repo-last-commit {
       border: 3px solid #73AD21;
-      flex: 1 0 33%;
+      flex-basis: 33%;
     }
   }
   .repo-owner {
     border: 3px solid #73AD21;
-    flex: 1 0 21%;
+    flex-direction: row;
 
-    .repo-img {
+    .img {
       border: 3px solid #73AD21;
-      flex: 1 0 50%;
+      flex-basis: 50%;
     }
 
-    .repo-nickname {
+    .a {
       border: 3px solid #73AD21;
-      flex: 1 0 50%;
+      flex-basis: 50%;
     }
   }
 
@@ -105,12 +108,12 @@ body {
 
   .repo-description {
     border: 3px solid #73AD21;
-    flex: 1 0 100%;
+    flex-basis: 100%;
   }
 
   .repo-contributors {
     border: 3px solid #73AD21;
-    flex: 1 0 100%;
+    flex-basis: 100%;
   }
 }
 

@@ -12,9 +12,6 @@ body > main {
   padding-bottom: 8vh;
   flex: 1 0 auto;
 }
-body > main .container {
-  text-align: center;
-}
 body > footer {
   padding-bottom: 8vh;
   flex: 0 0 auto;
@@ -23,35 +20,42 @@ body > footer .copyright {
   text-align: center;
 }
 
+.search-field {
+  text-align: center;
+  padding-bottom: 5vh;
+}
+
 .repos-list {
   text-align: center;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
 }
 .repos-list .repo {
   display: flex;
+  justify-content: center;
 }
 .repos-list .repo .repo-name {
   border: 3px solid #73AD21;
-  flex: 1 0 21%;
+  flex-basis: 21%;
 }
 .repos-list .repo .repo-stars {
   border: 3px solid #73AD21;
-  flex: 1 0 21%;
+  flex-basis: 21%;
 }
 .repos-list .repo .repo-last-commit {
   border: 3px solid #73AD21;
-  flex: 1 0 21%;
+  flex-basis: 21%;
 }
 .repos-list .repo .repo-link {
   border: 3px solid #73AD21;
-  flex: 1 0 21%;
+  flex-basis: 21%;
 }
 
 .repo-selected {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 .repo-selected .repo-header {
   padding-top: 20px;
@@ -61,27 +65,27 @@ body > footer .copyright {
 }
 .repo-selected .repo-header .repo-name {
   border: 3px solid #73AD21;
-  flex: 1 0 33%;
+  flex-basis: 33%;
 }
 .repo-selected .repo-header .repo-stars {
   border: 3px solid #73AD21;
-  flex: 1 0 33%;
+  flex-basis: 33%;
 }
 .repo-selected .repo-header .repo-last-commit {
   border: 3px solid #73AD21;
-  flex: 1 0 33%;
+  flex-basis: 33%;
 }
 .repo-selected .repo-owner {
   border: 3px solid #73AD21;
-  flex: 1 0 21%;
+  flex-direction: row;
 }
-.repo-selected .repo-owner .repo-img {
+.repo-selected .repo-owner .img {
   border: 3px solid #73AD21;
-  flex: 1 0 50%;
+  flex-basis: 50%;
 }
-.repo-selected .repo-owner .repo-nickname {
+.repo-selected .repo-owner .a {
   border: 3px solid #73AD21;
-  flex: 1 0 50%;
+  flex-basis: 50%;
 }
 .repo-selected .repo-languages {
   border: 3px solid #73AD21;
@@ -89,11 +93,11 @@ body > footer .copyright {
 }
 .repo-selected .repo-description {
   border: 3px solid #73AD21;
-  flex: 1 0 100%;
+  flex-basis: 100%;
 }
 .repo-selected .repo-contributors {
   border: 3px solid #73AD21;
-  flex: 1 0 100%;
+  flex-basis: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
