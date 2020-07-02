@@ -51,6 +51,8 @@ function createRepos(repositories) {
     reposList.innerText = '';
 
     repositories.forEach(repository => createRepo(repository));
+
+    //todo и тут создать пагинацию!только чтоб один раз выводилась, а не миллиард
 }
 
 function createRepo(repository) {
@@ -60,6 +62,7 @@ function createRepo(repository) {
 
     const repo = document.createElement('div');
     repo.setAttribute('class', 'repo');
+
 
     let repoName = document.createElement('div');
     repoName.setAttribute('class', 'repo-name');

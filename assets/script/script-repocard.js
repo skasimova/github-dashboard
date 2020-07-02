@@ -22,46 +22,74 @@ function initialization() {
         .searchParams
         .get('repo');
 
+
     request('/repos/' + repoName).then(data => createRepo(data));
 }
 
 initialization();
 
 function createRepo(data) {
-    const repoSelected = document.createElement('div');
-    repoSelected.setAttribute('class', 'repo-selected');
+    //todo подумать, не удалить ли мне repoSelected нафик, а то очень много контейнеров
+    const repoSelected = document.getElementById('repo-selected');
 
-    const repo = document.createElement('div');
-    repo.setAttribute('class', 'repo');
+    let headers = document.createElement('div');
+    headers.setAttribute('class', 'repo-header');
 
-    let repoHeader = document.createElement('div');
-    repoHeader.setAttribute('class', 'repo-header');
+    //todo переименовать переменную nameOfRepo и разобраться, нужен ли headers
+    const nameOfRepo = document.createElement('div');
+    nameOfRepo.setAttribute('class', 'name-of-repo');
+    nameOfRepo.innerText = "Repository's name";
 
-    repoSelected.appendChild(repoHeader);
+    const starsHeader = document.createElement('div');
+    starsHeader.setAttribute('class', 'stars-header');
+    starsHeader.innerText = "Stars";
+
+    const commitHeader = document.createElement('div');
+    commitHeader.setAttribute('class', 'commit-header');
+    commitHeader.innerText = "Latest commit";
+
+    headers.appendChild(nameOfRepo);
+    headers.appendChild(starsHeader);
+    headers.appendChild(commitHeader);
+
+    repoSelected.appendChild(headers);
+
+    let mainInfo = document.createElement('div');
+    mainInfo.setAttribute('class', 'main-info');
+
+    // let userHeader = document.createElement('div');
+    // userHeader.setAttribute('class', 'user-header');
+    // userHeader.innerHTML = 'User info';
 
     let repoName = document.createElement('div');
     repoName.setAttribute('class', 'repo-name');
     repoName.innerHTML = data.name;
 
-    let stars = document.createElement('div');
-    stars.setAttribute('class', 'repo-stars');
-    stars.innerText = '⭐' + data.stargazers_count;
-
     let lastCommit = document.createElement('div');
     lastCommit.setAttribute('class', 'repo-last-commit');
     lastCommit.innerText = data.updated_at;
 
-    repoHeader.appendChild(repoName);
-    repoHeader.appendChild(stars);
-    repoHeader.appendChild(lastCommit);
+    let stars = document.createElement('div');
+    stars.setAttribute('class', 'repo-stars');
+    stars.innerText = '⭐' + data.stargazers_count;
+
+    // mainInfo.appendChild(userHeader);
+    mainInfo.appendChild(repoName);
+    mainInfo.appendChild(lastCommit);
+    mainInfo.appendChild(stars);
+
+    repoSelected.appendChild(mainInfo);
 
     const repoOwner = document.createElement('div');
     repoOwner.setAttribute('class', 'repo-owner');
 
     const profilePic = document.createElement('img');
+    profilePic.setAttribute('class', 'profile-pic');
+    profilePic.setAttribute('width', '100px');
     profilePic.setAttribute('src', data.owner.avatar_url);
 
     const githubLink = document.createElement('a');
+    githubLink.setAttribute('class', 'profile-link');
     githubLink.setAttribute('href', data.owner.html_url);
     githubLink.innerText = data.owner.login;
 
@@ -74,6 +102,9 @@ function createRepo(data) {
     repoLangs.setAttribute('class', 'repo-languages');
     // todo сделать так, чтобы считывал все языки! через .languages почему-то не работает
     repoLangs.innerText = data.language; //не уверена насчёт этого!!
+    if (data.language == null) {
+        repoLangs.innerText = 'The information about the used languages is not available.';
+    }
 
     const description = document.createElement('div');
     description.setAttribute('class', 'repo-description');
@@ -83,15 +114,7 @@ function createRepo(data) {
     contributors.setAttribute('class', 'repo-contributors');
     contributors.innerText = data.contributors_url[0].login;
 
-    repo.appendChild(repoHeader);
-    repo.appendChild(repoOwner);
-    repo.appendChild(repoLangs);
-    repo.appendChild(description);
-    repo.appendChild(contributors);
-
-    repoSelected.appendChild(repo);
-
-    let container = document.getElementById('container');
-
-    container.appendChild(repoSelected);
+    repoSelected.appendChild(repoLangs);
+    repoSelected.appendChild(description);
+    repoSelected.appendChild(contributors);
 }

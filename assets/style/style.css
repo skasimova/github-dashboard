@@ -25,6 +25,33 @@ body > footer .copyright {
   padding-bottom: 5vh;
 }
 
+.headers {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  text-align: center;
+}
+.headers .repo-header {
+  border: 3px solid #73AD21;
+  flex-basis: 21%;
+  background-color: gold;
+}
+.headers .stars-header {
+  border: 3px solid #73AD21;
+  flex-basis: 21%;
+  background-color: gold;
+}
+.headers .commit-header {
+  border: 3px solid #73AD21;
+  flex-basis: 21%;
+  background-color: gold;
+}
+.headers .link-header {
+  border: 3px solid #73AD21;
+  flex-basis: 21%;
+  background-color: gold;
+}
+
 .repos-list {
   text-align: center;
   display: flex;
@@ -58,32 +85,57 @@ body > footer .copyright {
   text-align: center;
 }
 .repo-selected .repo-header {
-  padding-top: 20px;
   text-align: center;
   display: flex;
   flex-direction: row;
 }
-.repo-selected .repo-header .repo-name {
+.repo-selected .repo-header .name-of-repo {
+  border: 3px solid #73AD21;
+  flex-basis: 33%;
+  background-color: gold;
+}
+.repo-selected .repo-header .stars-header {
+  border: 3px solid #73AD21;
+  flex-basis: 33%;
+  background-color: gold;
+}
+.repo-selected .repo-header .commit-header {
+  border: 3px solid #73AD21;
+  flex-basis: 33%;
+  background-color: gold;
+}
+.repo-selected .main-info {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  /*    .user-header {
+        border: 3px solid #73AD21;
+        flex-basis: 100%;
+        background-color: gold;
+      }*/
+}
+.repo-selected .main-info .repo-name {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
-.repo-selected .repo-header .repo-stars {
+.repo-selected .main-info .repo-stars {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
-.repo-selected .repo-header .repo-last-commit {
+.repo-selected .main-info .repo-last-commit {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
 .repo-selected .repo-owner {
   border: 3px solid #73AD21;
   flex-direction: row;
+  align-items: center;
 }
-.repo-selected .repo-owner .img {
+.repo-selected .repo-owner .profile-pic {
   border: 3px solid #73AD21;
   flex-basis: 50%;
 }
-.repo-selected .repo-owner .a {
+.repo-selected .repo-owner .profile-link {
   border: 3px solid #73AD21;
   flex-basis: 50%;
 }
@@ -98,6 +150,17 @@ body > footer .copyright {
 .repo-selected .repo-contributors {
   border: 3px solid #73AD21;
   flex-basis: 100%;
+}
+
+.page-numbers {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+}
+.page-numbers .page {
+  display: flex;
+  background-color: coral;
+  width: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
