@@ -87,96 +87,95 @@ body {
     }
 }
 
-.repo-selected {
+.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  text-align: center;
 
-  .repo-header {
+  .repo-selected {
     text-align: center;
-    display: flex;
-    flex-direction: row;
 
-    .name-of-repo {
-      border: 3px solid #73AD21;
-      flex-basis: 33%;
-      background-color: gold;
+    .repo-header {
+      display: flex;
+
+      .name-of-repo {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+        background-color: gold;
+      }
+
+      .stars-header {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+        background-color: gold;
+      }
+
+      .commit-header {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+        background-color: gold;
+      }
     }
 
-    .stars-header {
-      border: 3px solid #73AD21;
-      flex-basis: 33%;
-      background-color: gold;
+
+    .main-info {
+      display: flex;
+      //flex-wrap: wrap;
+
+      /*    .user-header {
+            border: 3px solid #73AD21;
+            flex-basis: 100%;
+            background-color: gold;
+          }*/
+
+      .repo-name {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+      }
+
+      .repo-stars {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+      }
+
+      .repo-last-commit {
+        border: 3px solid #73AD21;
+        flex-basis: 33%;
+      }
     }
 
-    .commit-header {
+    .repo-owner {
+      display: flex;
       border: 3px solid #73AD21;
-      flex-basis: 33%;
-      background-color: gold;
+      align-items: center;
+
+      .profile-pic {
+        border: 3px solid #73AD21;
+      }
+
+      .profile-link {
+        border: 3px solid #73AD21;
+        flex-basis: 100%;
+      }
     }
-  }
 
+    .repo-languages {
+      border: 3px solid #73AD21;
+      flex: 1 0 100%;
+    }
 
-  .main-info {
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    //flex-wrap: wrap;
-
-/*    .user-header {
+    .repo-description {
       border: 3px solid #73AD21;
       flex-basis: 100%;
-      background-color: gold;
-    }*/
-
-    .repo-name {
-      border: 3px solid #73AD21;
-      flex-basis: 33%;
     }
 
-    .repo-stars {
+    .repo-contributors {
       border: 3px solid #73AD21;
-      flex-basis: 33%;
-    }
-
-    .repo-last-commit {
-      border: 3px solid #73AD21;
-      flex-basis: 33%;
+      flex-basis: 100%;
     }
   }
 
-  .repo-owner {
-    border: 3px solid #73AD21;
-    flex-direction: row;
-    align-items: center;
-
-    .profile-pic {
-      border: 3px solid #73AD21;
-      flex-basis: 50%;
-    }
-
-    .profile-link {
-      border: 3px solid #73AD21;
-      flex-basis: 50%;
-    }
-  }
-
-  .repo-languages {
-    border: 3px solid #73AD21;
-    flex: 1 0 100%;
-  }
-
-  .repo-description {
-    border: 3px solid #73AD21;
-    flex-basis: 100%;
-  }
-
-  .repo-contributors {
-    border: 3px solid #73AD21;
-    flex-basis: 100%;
-  }
 }
+
 
 .page-numbers {
   display: flex;

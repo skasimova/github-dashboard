@@ -78,76 +78,72 @@ body > footer .copyright {
   flex-basis: 21%;
 }
 
-.repo-selected {
+.container {
   display: flex;
-  flex-direction: column;
   justify-content: center;
+}
+.container .repo-selected {
   text-align: center;
 }
-.repo-selected .repo-header {
-  text-align: center;
+.container .repo-selected .repo-header {
   display: flex;
-  flex-direction: row;
 }
-.repo-selected .repo-header .name-of-repo {
+.container .repo-selected .repo-header .name-of-repo {
   border: 3px solid #73AD21;
   flex-basis: 33%;
   background-color: gold;
 }
-.repo-selected .repo-header .stars-header {
+.container .repo-selected .repo-header .stars-header {
   border: 3px solid #73AD21;
   flex-basis: 33%;
   background-color: gold;
 }
-.repo-selected .repo-header .commit-header {
+.container .repo-selected .repo-header .commit-header {
   border: 3px solid #73AD21;
   flex-basis: 33%;
   background-color: gold;
 }
-.repo-selected .main-info {
-  text-align: center;
+.container .repo-selected .main-info {
   display: flex;
-  flex-direction: row;
   /*    .user-header {
         border: 3px solid #73AD21;
         flex-basis: 100%;
         background-color: gold;
       }*/
 }
-.repo-selected .main-info .repo-name {
+.container .repo-selected .main-info .repo-name {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
-.repo-selected .main-info .repo-stars {
+.container .repo-selected .main-info .repo-stars {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
-.repo-selected .main-info .repo-last-commit {
+.container .repo-selected .main-info .repo-last-commit {
   border: 3px solid #73AD21;
   flex-basis: 33%;
 }
-.repo-selected .repo-owner {
+.container .repo-selected .repo-owner {
+  display: flex;
   border: 3px solid #73AD21;
-  flex-direction: row;
   align-items: center;
 }
-.repo-selected .repo-owner .profile-pic {
+.container .repo-selected .repo-owner .profile-pic {
   border: 3px solid #73AD21;
-  flex-basis: 50%;
 }
-.repo-selected .repo-owner .profile-link {
-  border: 3px solid #73AD21;
-  flex-basis: 50%;
-}
-.repo-selected .repo-languages {
-  border: 3px solid #73AD21;
-  flex: 1 0 100%;
-}
-.repo-selected .repo-description {
+.container .repo-selected .repo-owner .profile-link {
   border: 3px solid #73AD21;
   flex-basis: 100%;
 }
-.repo-selected .repo-contributors {
+.container .repo-selected .repo-languages {
+  border: 3px solid #73AD21;
+  flex: 1 0 100%;
+}
+.container .repo-selected .repo-description {
+  border: 3px solid #73AD21;
+  flex-basis: 100%;
+}
+.container .repo-selected .repo-contributors {
   border: 3px solid #73AD21;
   flex-basis: 100%;
 }

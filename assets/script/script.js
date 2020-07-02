@@ -52,7 +52,6 @@ function createRepos(repositories) {
 
     repositories.forEach(repository => createRepo(repository));
 
-    //todo и тут создать пагинацию!только чтоб один раз выводилась, а не миллиард
 }
 
 function createRepo(repository) {

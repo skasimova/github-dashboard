@@ -91,7 +91,9 @@ function createRepo(data) {
     const githubLink = document.createElement('a');
     githubLink.setAttribute('class', 'profile-link');
     githubLink.setAttribute('href', data.owner.html_url);
-    githubLink.innerText = data.owner.login;
+
+    //todo добавить строки к именам
+    githubLink.innerText = 'Github profile:' + data.owner.login;
 
     repoOwner.appendChild(profilePic);
     repoOwner.appendChild(githubLink);
@@ -100,11 +102,7 @@ function createRepo(data) {
 
     const repoLangs = document.createElement('div');
     repoLangs.setAttribute('class', 'repo-languages');
-    // todo сделать так, чтобы считывал все языки! через .languages почему-то не работает
-    repoLangs.innerText = data.language; //не уверена насчёт этого!!
-    if (data.language == null) {
-        repoLangs.innerText = 'The information about the used languages is not available.';
-    }
+    repoLangs.setAttribute('id', 'repo-languages');
 
     const description = document.createElement('div');
     description.setAttribute('class', 'repo-description');
@@ -112,9 +110,54 @@ function createRepo(data) {
 
     const contributors = document.createElement('div');
     contributors.setAttribute('class', 'repo-contributors');
-    contributors.innerText = data.contributors_url[0].login;
+    contributors.setAttribute('id', 'repo-contributors');
 
     repoSelected.appendChild(repoLangs);
     repoSelected.appendChild(description);
     repoSelected.appendChild(contributors);
+
+    additionalRequest();
+}
+
+function additionalRequest() {
+    getLangs();
+    getContributors();
+}
+
+function getLangs() {
+    let repoName = new URL(window.location)
+        .searchParams
+        .get('repo');
+
+    request('/repos/' + repoName + '/languages').then(data => fillInLangs(data));
+}
+
+function fillInLangs(data) {
+
+    const repoLangs = document.getElementById('repo-languages');
+
+    let languages = Object.keys(data);
+
+    repoLangs.innerText = languages.join(', ');
+}
+
+function getContributors() {
+    let repoName = new URL(window.location)
+        .searchParams
+        .get('repo');
+
+    request('/repos/' + repoName + '/contributors?per_page=10').then(data => fillInContributors(data));
+
+}
+
+function fillInContributors(data) {
+    const contributors = document.getElementById('repo-contributors');
+
+    console.log(data);
+
+    let repoContributors = [];
+
+    data.forEach(contributor => repoContributors.push(contributor.login));
+
+    contributors.innerText = repoContributors.join(', ');
 }
