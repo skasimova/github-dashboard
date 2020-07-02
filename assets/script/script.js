@@ -17,7 +17,6 @@ async function request(path) {
 }
 
 
-
 function initialization() {
     getMostPopular();
 }
@@ -31,16 +30,26 @@ function getMostPopular() {
 
 //todo сюда пойдёт ф-я (с привязкой к кнопке, которая вызовется, если задан конкретный юзер - показать его репы)
 
-// const inputForm = document.getElementById('input-form');
-//
-// function getRepo() {
-//     inputForm.addEventListener('submit', event => {
-//         const repo = inputForm.value;
-//         request('/search/repositories').then(data => createRepos(data.items)); НЕ ДОДЕЛАНО
-//     })
-// }
+const searchField = document.getElementById('search-field');
+const inputForm = document.getElementById('input-form');
+
+
+searchField.addEventListener('submit', event => {
+    event.preventDefault();
+
+    const repo = inputForm.value;
+
+    request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10')
+        .then(data => createRepos(data.items));
+
+    inputForm.value = '';
+});
 
 function createRepos(repositories) {
+
+    const reposList = document.getElementById('repos-list');
+    reposList.innerText = '';
+
     repositories.forEach(repository => createRepo(repository));
 }
 
