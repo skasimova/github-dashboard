@@ -57,10 +57,6 @@ function createRepo(data) {
     let mainInfo = document.createElement('div');
     mainInfo.setAttribute('class', 'main-info');
 
-    // let userHeader = document.createElement('div');
-    // userHeader.setAttribute('class', 'user-header');
-    // userHeader.innerHTML = 'User info';
-
     let repoName = document.createElement('div');
     repoName.setAttribute('class', 'repo-name');
     repoName.innerHTML = data.name;
@@ -73,12 +69,17 @@ function createRepo(data) {
     stars.setAttribute('class', 'repo-stars');
     stars.innerText = '⭐' + data.stargazers_count;
 
-    // mainInfo.appendChild(userHeader);
     mainInfo.appendChild(repoName);
     mainInfo.appendChild(lastCommit);
     mainInfo.appendChild(stars);
 
     repoSelected.appendChild(mainInfo);
+
+    const profileHeader = document.createElement('div');
+    profileHeader.setAttribute('class', 'profile-header');
+    profileHeader.innerText = "User's profile";
+
+    repoSelected.appendChild(profileHeader);
 
     const repoOwner = document.createElement('div');
     repoOwner.setAttribute('class', 'repo-owner');
@@ -91,29 +92,42 @@ function createRepo(data) {
     const githubLink = document.createElement('a');
     githubLink.setAttribute('class', 'profile-link');
     githubLink.setAttribute('href', data.owner.html_url);
-
-    //todo добавить строки к именам
-    githubLink.innerText = 'Github profile:' + data.owner.login;
+    githubLink.innerText = data.owner.login;
 
     repoOwner.appendChild(profilePic);
     repoOwner.appendChild(githubLink);
 
     repoSelected.appendChild(repoOwner);
 
+    const langsHeader = document.createElement('div');
+    langsHeader.setAttribute('class', 'languages-header');
+    langsHeader.innerText = 'Languages used in the repository';
+
     const repoLangs = document.createElement('div');
     repoLangs.setAttribute('class', 'repo-languages');
     repoLangs.setAttribute('id', 'repo-languages');
+
+    const descriptionHeader = document.createElement('div');
+    descriptionHeader.setAttribute('class', 'description-header');
+    descriptionHeader.innerText = 'Repository description';
 
     const description = document.createElement('div');
     description.setAttribute('class', 'repo-description');
     description.innerText = data.description;
 
+    const contributorsHeader = document.createElement('div');
+    contributorsHeader.setAttribute('class', 'contributors-header');
+    contributorsHeader.innerText = 'Most popular contributors';
+
     const contributors = document.createElement('div');
     contributors.setAttribute('class', 'repo-contributors');
     contributors.setAttribute('id', 'repo-contributors');
 
+    repoSelected.appendChild(langsHeader);
     repoSelected.appendChild(repoLangs);
+    repoSelected.appendChild(descriptionHeader);
     repoSelected.appendChild(description);
+    repoSelected.appendChild(contributorsHeader);
     repoSelected.appendChild(contributors);
 
     additionalRequest();
