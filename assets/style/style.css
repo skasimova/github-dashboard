@@ -84,6 +84,7 @@ body > footer .copyright {
 }
 .container .repo-selected {
   text-align: center;
+  width: 50em;
 }
 .container .repo-selected .repo-header {
   display: flex;

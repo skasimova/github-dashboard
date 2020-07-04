@@ -18,17 +18,30 @@ async function request(path) {
 
 
 function initialization() {
-    getMostPopular();
+    let repoName = new URL(window.location)
+        .searchParams
+        .get('name');
+
+    if (repoName !== null) {
+        findRepo(repoName);
+    } else {
+        getMostPopular();
+    }
 }
 
 initialization();
 
 // "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
 function getMostPopular() {
-    request('/search/repositories?q=stars:>100&per_page=10').then(data => createRepos(data.items));
+    request('/search/repositories?q=stars:>100&per_page=10')
+        .then(data => {
+            createRepos(data.items);
+            createPagination(data.total_count);
+        });
+
+    //todo сюда добавить пагинацию
 }
 
-//todo сюда пойдёт ф-я (с привязкой к кнопке, которая вызовется, если задан конкретный юзер - показать его репы)
 
 const searchField = document.getElementById('search-field');
 const inputForm = document.getElementById('input-form');
@@ -37,13 +50,21 @@ const inputForm = document.getElementById('input-form');
 searchField.addEventListener('submit', event => {
     event.preventDefault();
 
-    const repo = inputForm.value;
-
-    request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10')
-        .then(data => createRepos(data.items));
-
-    inputForm.value = '';
+    findRepo(inputForm.value);
 });
+
+function findRepo(repo) {
+    request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10')
+        .then(data => {
+            createRepos(data.items);
+            setURLParam('name', repo);
+        });
+}
+
+function setURLParam(paramKey, param) {
+    window.history.pushState({}, document.title, "index.html?" + paramKey + '=' + param);
+}
+
 
 function createRepos(repositories) {
 
@@ -99,4 +120,12 @@ function createRepo(repository) {
     let container = document.getElementById('container');
 
     container.appendChild(reposList);
+}
+
+function createPagination(totalCount) {
+    const pageCount = Math.ceil(totalCount / 10);
+    console.log(pageCount);
+
+    const pagination = document.getElementById('pagination');
+
 }

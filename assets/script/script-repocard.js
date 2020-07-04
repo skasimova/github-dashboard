@@ -49,8 +49,8 @@ function createRepo(data) {
     commitHeader.innerText = "Latest commit";
 
     headers.appendChild(nameOfRepo);
-    headers.appendChild(starsHeader);
     headers.appendChild(commitHeader);
+    headers.appendChild(starsHeader);
 
     repoSelected.appendChild(headers);
 
@@ -151,8 +151,13 @@ function fillInLangs(data) {
     const repoLangs = document.getElementById('repo-languages');
 
     let languages = Object.keys(data);
+    console.log(languages);
 
-    repoLangs.innerText = languages.join(', ');
+    if (languages.length === 0) {
+        repoLangs.innerText = 'The information about the used languages is not available';
+    } else {
+        repoLangs.innerText = languages.join(', ');
+    }
 }
 
 function getContributors() {
