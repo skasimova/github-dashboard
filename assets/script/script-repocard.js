@@ -113,7 +113,11 @@ function createRepo(data) {
 
     const description = document.createElement('div');
     description.setAttribute('class', 'repo-description');
-    description.innerText = data.description;
+    if (data.description === null) {
+        description.innerText = 'The user has not provided a description for this repository';
+    } else {
+        description.innerText = data.description;
+    }
 
     const contributorsHeader = document.createElement('div');
     contributorsHeader.setAttribute('class', 'contributors-header');
@@ -151,7 +155,6 @@ function fillInLangs(data) {
     const repoLangs = document.getElementById('repo-languages');
 
     let languages = Object.keys(data);
-    console.log(languages);
 
     if (languages.length === 0) {
         repoLangs.innerText = 'The information about the used languages is not available';
@@ -171,8 +174,6 @@ function getContributors() {
 
 function fillInContributors(data) {
     const contributors = document.getElementById('repo-contributors');
-
-    console.log(data);
 
     let repoContributors = [];
 
