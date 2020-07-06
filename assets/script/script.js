@@ -1,3 +1,5 @@
+//todo удалить все англ комменты к коду
+
 // request -- запрос к серверу
 // path - вторая (изменчивая) часть пути, по которому нужно обратиться
 async function request(path) {
@@ -18,28 +20,24 @@ async function request(path) {
 
 
 function initialization() {
-    let repoName = new URL(window.location)
-        .searchParams
-        .get('name');
+    let repoName = new URL(window.location).searchParams.get('name');
 
     if (repoName !== null) {
         findRepo(repoName);
     } else {
-        getMostPopular();
+        findMostPopular();
     }
 }
 
 initialization();
 
 // "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
-function getMostPopular() {
+function findMostPopular() {
     request('/search/repositories?q=stars:>100&per_page=10')
         .then(data => {
             createRepos(data.items);
             createPagination(data.total_count);
         });
-
-    //todo сюда добавить пагинацию
 }
 
 
@@ -56,8 +54,9 @@ searchField.addEventListener('submit', event => {
 function findRepo(repo) {
     request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10')
         .then(data => {
-            createRepos(data.items);
             setURLParam('name', repo);
+            createRepos(data.items);
+            createPagination(data.total_count);
         });
 }
 
@@ -76,8 +75,6 @@ function createRepos(repositories) {
 }
 
 function createRepo(repository) {
-    console.log(repository);
-
     const reposList = document.getElementById('repos-list');
 
     const repo = document.createElement('div');
@@ -116,16 +113,25 @@ function createRepo(repository) {
     repo.appendChild(repoLink);
 
     reposList.appendChild(repo);
-
-    let container = document.getElementById('container');
-
-    container.appendChild(reposList);
 }
 
+//todo сделать так, чтобы кнопки отображались под списком, а не над!
 function createPagination(totalCount) {
-    const pageCount = Math.ceil(totalCount / 10);
-    console.log(pageCount);
+    const pageCount = 10;//Math.ceil(totalCount / 10);
 
     const pagination = document.getElementById('pagination');
 
+    for (let i = 1; i <= pageCount; i++) {
+        const paginationButton = createPaginationButton(i);
+
+        pagination.appendChild(paginationButton);
+    }
+}
+
+function createPaginationButton(page) {
+    const pageNumber = document.createElement('button');
+    pageNumber.setAttribute('class', 'page-link');
+    pageNumber.innerText = page;
+
+    return pageNumber;
 }
