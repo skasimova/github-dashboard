@@ -21,22 +21,28 @@ async function request(path) {
 
 function initialization() {
     let repoName = new URL(window.location).searchParams.get('name');
+    let page = new URL(window.location).searchParams.get('page');
 
     if (repoName !== null) {
-        findRepo(repoName);
+        findRepo(repoName, page);
     } else {
-        findMostPopular();
+        findMostPopular(page);
     }
+
 }
 
 initialization();
 
+
 // "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
-function findMostPopular() {
-    request('/search/repositories?q=stars:>100&per_page=10')
+function findMostPopular(page) {
+    request('/search/repositories?q=stars:>100&per_page=10' + (page !== null ? '&page=' + page : ''))
         .then(data => {
+            if (page !== null) {
+                setURLParam({'page': page});
+            }
             createRepos(data.items);
-            createPagination(data.total_count);
+            createPagination(data.total_count, page);
         });
 }
 
@@ -48,25 +54,35 @@ const inputForm = document.getElementById('input-form');
 searchField.addEventListener('submit', event => {
     event.preventDefault();
 
-    findRepo(inputForm.value);
+    findRepo(inputForm.value, 1);
 });
 
-function findRepo(repo) {
-    request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10')
+function findRepo(repo, page) {
+    request('/search/repositories?q=' + repo + '&sort=stars&order=desc&per_page=10' + (page !== null ? '&page=' + page : ''))
         .then(data => {
-            setURLParam('name', repo);
+            setURLParam({'name': repo, 'page': page});
             createRepos(data.items);
-            createPagination(data.total_count);
+            createPagination(data.total_count, page);
         });
 }
 
-function setURLParam(paramKey, param) {
-    window.history.pushState({}, document.title, "index.html?" + paramKey + '=' + param);
+function setURLParam(params) {
+
+    let url = new URL(window.location);
+    let urlParams = new URLSearchParams(url.search.slice(1));
+
+    for (const key in params) {
+        urlParams.set(key, params[key]);
+    }
+
+    let newURL = url.pathname + '?' + urlParams.toString();
+
+    //pushState добавляет новый URL в строку без перезагрузки страницы
+    window.history.pushState({}, document.title, newURL);
 }
 
 
 function createRepos(repositories) {
-
     const reposList = document.getElementById('repos-list');
     reposList.innerText = '';
 
@@ -115,22 +131,47 @@ function createRepo(repository) {
     reposList.appendChild(repo);
 }
 
-//todo сделать так, чтобы кнопки отображались под списком, а не над!
-function createPagination(totalCount) {
-    const pageCount = 10;//Math.ceil(totalCount / 10);
+function createPagination(totalCount, currentPage) {
+    const pageCount = Math.ceil(totalCount / 10);
 
     const pagination = document.getElementById('pagination');
+    pagination.innerText = "";
 
+    if (currentPage === null) {
+        currentPage = 1;
+    }
+
+    //todo сделать так чтобы отображались и другие страницы тоже!
     for (let i = 1; i <= pageCount; i++) {
-        const paginationButton = createPaginationButton(i);
 
-        pagination.appendChild(paginationButton);
+        if (i == currentPage) {
+            pagination.appendChild(createInactivePaginationButton(i));
+        } else {
+            pagination.appendChild(createPaginationButton(i));
+        }
     }
 }
 
 function createPaginationButton(page) {
     const pageNumber = document.createElement('button');
     pageNumber.setAttribute('class', 'page-link');
+    pageNumber.innerText = page;
+
+    pageNumber.addEventListener('click', event => {
+        let repoName = new URL(window.location).searchParams.get('name');
+        if(repoName) {
+            findRepo(repoName, event.target.innerHTML);
+        } else {
+            findMostPopular(event.target.innerHTML);
+        }
+    })
+
+    return pageNumber;
+}
+
+function createInactivePaginationButton(page) {
+    const pageNumber = document.createElement('button');
+    pageNumber.setAttribute('class', 'inactive-page-link');
     pageNumber.innerText = page;
 
     return pageNumber;

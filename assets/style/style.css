@@ -78,6 +78,13 @@ body > footer .copyright {
   flex-basis: 21%;
 }
 
+.pagination {
+  margin-top: 3vh;
+}
+.pagination .inactive-page-link {
+  background-color: gray;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -155,17 +162,6 @@ body > footer .copyright {
 }
 .container .repo-selected .repo-contributors {
   flex-basis: 100%;
-}
-
-.page-numbers {
-  display: flex;
-  flex-direction: row;
-  align-self: flex-end;
-}
-.page-numbers .page {
-  display: flex;
-  background-color: coral;
-  width: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

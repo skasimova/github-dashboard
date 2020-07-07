@@ -87,6 +87,14 @@ body {
     }
 }
 
+.pagination {
+  margin-top: 3vh;
+
+  .inactive-page-link {
+    background-color: gray;
+  }
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -184,17 +192,4 @@ body {
     }
   }
 
-}
-
-
-.page-numbers {
-  display: flex;
-  flex-direction: row;
-  align-self: flex-end;
-
-  .page {
-    display: flex;
-    background-color: coral;
-    width: 20px;
-  }
 }
