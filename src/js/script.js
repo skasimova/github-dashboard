@@ -132,7 +132,8 @@ function createRepo(repository) {
 }
 
 function createPagination(totalCount, currentPage) {
-    const pageCount = Math.ceil(totalCount / 10);
+    const totalPages = Math.ceil(totalCount / 10);
+    const maxDisplayedPages = 10;
 
     const pagination = document.getElementById('pagination');
     pagination.innerText = "";
@@ -141,8 +142,8 @@ function createPagination(totalCount, currentPage) {
         currentPage = 1;
     }
 
-    //todo сделать так чтобы отображались и другие страницы тоже!
-    for (let i = 1; i <= pageCount; i++) {
+    //todo сделать так чтобы отображалось по 4 стр с каждой стороны например
+    for (let i = 1; i <= maxDisplayedPages; i++) {
 
         if (i == currentPage) {
             pagination.appendChild(createInactivePaginationButton(i));
@@ -171,7 +172,7 @@ function createPaginationButton(page) {
 
 function createInactivePaginationButton(page) {
     const pageNumber = document.createElement('button');
-    pageNumber.setAttribute('class', 'inactive-page-link');
+    pageNumber.setAttribute('class', 'current-page-link');
     pageNumber.innerText = page;
 
     return pageNumber;

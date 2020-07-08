@@ -37,10 +37,10 @@ body {
   .repo-header {
     background-color: lightblue;
     border: 1px solid cadetblue;
-    flex-basis: 21%;
+    flex-basis: 31%;
   }
   .stars-header {
-    flex-basis: 21%;
+    flex-basis: 11%;
     background-color: lightblue;
     border: 1px solid cadetblue;
   }
@@ -67,12 +67,12 @@ body {
 
       .repo-name {
         border: 1px solid cadetblue;
-        flex-basis: 21%;
+        flex-basis: 31%;
       }
 
       .repo-stars {
         border: 1px solid cadetblue;
-        flex-basis: 21%;
+        flex-basis: 11%;
       }
 
       .repo-last-commit {
@@ -88,9 +88,18 @@ body {
 }
 
 .pagination {
+  display: flex;
   margin-top: 3vh;
+  justify-content: center;
 
-  .inactive-page-link {
+  .page-link {
+    border: none;
+    outline: none;
+  }
+
+  .current-page-link {
+    border: none;
+    outline: none;
     background-color: gray;
   }
 }
