@@ -34,10 +34,10 @@ body > footer .copyright {
 .headers .repo-header {
   background-color: lightblue;
   border: 1px solid cadetblue;
-  flex-basis: 21%;
+  flex-basis: 31%;
 }
 .headers .stars-header {
-  flex-basis: 21%;
+  flex-basis: 11%;
   background-color: lightblue;
   border: 1px solid cadetblue;
 }
@@ -63,11 +63,11 @@ body > footer .copyright {
 }
 .repos-list .repo .repo-name {
   border: 1px solid cadetblue;
-  flex-basis: 21%;
+  flex-basis: 31%;
 }
 .repos-list .repo .repo-stars {
   border: 1px solid cadetblue;
-  flex-basis: 21%;
+  flex-basis: 11%;
 }
 .repos-list .repo .repo-last-commit {
   border: 1px solid cadetblue;
@@ -79,9 +79,17 @@ body > footer .copyright {
 }
 
 .pagination {
+  display: flex;
   margin-top: 3vh;
+  justify-content: center;
 }
-.pagination .inactive-page-link {
+.pagination .page-link {
+  border: none;
+  outline: none;
+}
+.pagination .current-page-link {
+  border: none;
+  outline: none;
   background-color: gray;
 }
 
@@ -164,4 +172,4 @@ body > footer .copyright {
   flex-basis: 100%;
 }
 
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=styles.css.map */

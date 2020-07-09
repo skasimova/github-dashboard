@@ -1,16 +1,10 @@
-//todo удалить все англ комменты к коду
-
-// request -- запрос к серверу
-// path - вторая (изменчивая) часть пути, по которому нужно обратиться
 async function request(path) {
     let url = 'https://api.github.com' + path;
 
     let response = await fetch(url);
 
-    // "если не вылезла ошибка"
     if (response.ok) {
 
-        // "верни результат в виде объекта
         return await response.json();
 
     } else {
@@ -34,7 +28,6 @@ function initialization() {
 initialization();
 
 
-// "Как только ты достал данные, then - вызови мне функцию с тем, что ты вернул
 function findMostPopular(page) {
     request('/search/repositories?q=stars:>100&per_page=10' + (page !== null ? '&page=' + page : ''))
         .then(data => {
@@ -77,7 +70,6 @@ function setURLParam(params) {
 
     let newURL = url.pathname + '?' + urlParams.toString();
 
-    //pushState добавляет новый URL в строку без перезагрузки страницы
     window.history.pushState({}, document.title, newURL);
 }
 
@@ -132,25 +124,53 @@ function createRepo(repository) {
 }
 
 function createPagination(totalCount, currentPage) {
-    const totalPages = Math.ceil(totalCount / 10);
-    const maxDisplayedPages = 10;
+    let totalPages = Math.ceil(totalCount / 10);
+console.log(totalPages);
+    // ограничение github - не показывает дальше 1000-го репозитория
+    if (totalPages > 100) {
+        totalPages = 100;
+    }
 
     const pagination = document.getElementById('pagination');
     pagination.innerText = "";
 
     if (currentPage === null) {
         currentPage = 1;
+    } else {
+        currentPage = parseInt(currentPage);
     }
 
-    //todo сделать так чтобы отображалось по 4 стр с каждой стороны например
-    for (let i = 1; i <= maxDisplayedPages; i++) {
+    if (totalPages === 1) {
+        return;
+    }
 
-        if (i == currentPage) {
+    let startPage = currentPage < 5 ? 1 : currentPage - 4;
+    let endPage = currentPage < totalPages - 4 ? currentPage + 4 : totalPages;
+
+    if (currentPage > 5) {
+        pagination.appendChild(createPaginationDots());
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
+
+        if (i === currentPage) {
             pagination.appendChild(createInactivePaginationButton(i));
         } else {
             pagination.appendChild(createPaginationButton(i));
         }
     }
+
+    if (currentPage < totalPages - 4) {
+        pagination.appendChild(createPaginationDots());
+    }
+}
+
+function createPaginationDots() {
+    const dots = document.createElement('span');
+    dots.setAttribute('class', 'page-dots');
+    dots.innerText = '...';
+
+    return dots;
 }
 
 function createPaginationButton(page) {

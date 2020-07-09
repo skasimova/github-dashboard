@@ -1,14 +1,10 @@
-// request -- запрос к серверу
-// path - вторая (изменчивая) часть пути, по которому нужно обратиться
 async function request(path) {
     let url = 'https://api.github.com' + path;
 
     let response = await fetch(url);
 
-    // "если не вылезла ошибка"
     if (response.ok) {
 
-        // "верни результат в виде объекта
         return await response.json();
 
     } else {
@@ -29,13 +25,11 @@ function initialization() {
 initialization();
 
 function createRepo(data) {
-    //todo подумать, не удалить ли мне repoSelected нафик, а то очень много контейнеров
     const repoSelected = document.getElementById('repo-selected');
 
     let headers = document.createElement('div');
     headers.setAttribute('class', 'repo-header');
 
-    //todo переименовать переменную nameOfRepo и разобраться, нужен ли headers
     const nameOfRepo = document.createElement('div');
     nameOfRepo.setAttribute('class', 'name-of-repo');
     nameOfRepo.innerText = "Repository's name";
