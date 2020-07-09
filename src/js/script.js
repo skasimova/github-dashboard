@@ -104,7 +104,7 @@ function createRepo(repository) {
 
     let lastCommit = document.createElement('div');
     lastCommit.setAttribute('class', 'repo-last-commit');
-    lastCommit.innerText = repository.updated_at;
+    lastCommit.innerText = repository.updated_at.replace('T', ' ').replace('Z', '');
 
     let repoLink = document.createElement('div');
     repoLink.setAttribute('class', 'repo-link');

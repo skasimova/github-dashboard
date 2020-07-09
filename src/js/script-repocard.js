@@ -57,7 +57,7 @@ function createRepo(data) {
 
     let lastCommit = document.createElement('div');
     lastCommit.setAttribute('class', 'repo-last-commit');
-    lastCommit.innerText = data.updated_at;
+    lastCommit.innerText = data.updated_at.replace('T', ' ').replace('Z', '');;
 
     let stars = document.createElement('div');
     stars.setAttribute('class', 'repo-stars');
@@ -163,7 +163,6 @@ function getContributors() {
         .get('repo');
 
     request('/repos/' + repoName + '/contributors?per_page=10').then(data => fillInContributors(data));
-
 }
 
 function fillInContributors(data) {
@@ -173,5 +172,9 @@ function fillInContributors(data) {
 
     data.forEach(contributor => repoContributors.push(contributor.login));
 
-    contributors.innerText = repoContributors.join(', ');
+    if (repoContributors.length === 0) {
+        contributors.innerText = 'The information about contributors in unavailable';
+    } else {
+        contributors.innerText = repoContributors.join(', ');
+    }
 }
