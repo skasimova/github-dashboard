@@ -22,7 +22,9 @@ function initialization() {
     request('/repos/' + repoName).then(data => createRepo(data));
 }
 
-initialization();
+if (document.querySelector('.repocard')) {
+    initialization();
+}
 
 function createRepo(data) {
     const repoSelected = document.getElementById('repo-selected');
