@@ -97,7 +97,7 @@ function createRepo(data) {
 
     const langsHeader = document.createElement('div');
     langsHeader.setAttribute('class', 'languages-header');
-    langsHeader.innerText = 'Languages used in the repository';
+    langsHeader.innerText = 'Languages';
 
     const repoLangs = document.createElement('div');
     repoLangs.setAttribute('class', 'repo-languages');
@@ -105,7 +105,7 @@ function createRepo(data) {
 
     const descriptionHeader = document.createElement('div');
     descriptionHeader.setAttribute('class', 'description-header');
-    descriptionHeader.innerText = 'Repository description';
+    descriptionHeader.innerText = 'Description';
 
     const description = document.createElement('div');
     description.setAttribute('class', 'repo-description');
@@ -117,7 +117,7 @@ function createRepo(data) {
 
     const contributorsHeader = document.createElement('div');
     contributorsHeader.setAttribute('class', 'contributors-header');
-    contributorsHeader.innerText = 'Most popular contributors';
+    contributorsHeader.innerText = 'Popular contributors';
 
     const contributors = document.createElement('div');
     contributors.setAttribute('class', 'repo-contributors');
