@@ -1,6 +1,7 @@
 const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const PATHS = {
     src: path.join(__dirname, '../src'),
@@ -27,37 +28,30 @@ module.exports = {
                 exclude: '/node_modules/'
             },
             {
-                test: /\.css$/,
-                use: [
-                    'style-loader',
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: { sourceMap: true }
-                    }, {
-                        loader: 'postcss-loader',
-                        options: { sourceMap: true, config: { path: 'src/js/postcss.config.js' } }
-                    }
-                ]
-            },
-            {
                 test: /\.scss$/,
                 use: [
-                    'style-loader',
-                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {},
+                    },
                     {
                         loader: 'css-loader',
-                        options: { sourceMap: true }
-                    }, {
+                        options: {sourceMap: true, url: false},
+                    },
+                    {
                         loader: 'postcss-loader',
-                        options: { sourceMap: true, config: { path: 'src/js/postcss.config.js' } }
-                    }, {
+                        options: {
+                            sourceMap: true,
+                            config: {path: 'src/js/postcss.config.js'},
+                        },
+                    },
+                    {
                         loader: 'sass-loader',
-                        options: { sourceMap: true }
-                    }
-                ]
-            }
-        ]
+                        options: {sourceMap: true},
+                    },
+                ],
+            },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
