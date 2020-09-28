@@ -18,7 +18,6 @@ module.exports = {
     output: {
         filename: 'js/[name].js',
         path: PATHS.build,
-        publicPath: '/'
     },
     module: {
         rules: [
