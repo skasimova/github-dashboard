@@ -64,18 +64,22 @@ body > footer .copyright {
 .repos-list .repo .repo-name {
   border: 1px solid cadetblue;
   flex-basis: 31%;
+  word-break: break-all;
 }
 .repos-list .repo .repo-stars {
   border: 1px solid cadetblue;
   flex-basis: 11%;
+  word-break: break-all;
 }
 .repos-list .repo .repo-last-commit {
   border: 1px solid cadetblue;
   flex-basis: 21%;
+  word-break: break-all;
 }
 .repos-list .repo .repo-link {
   border: 1px solid cadetblue;
   flex-basis: 21%;
+  word-break: break-all;
 }
 
 .pagination {
@@ -97,6 +101,7 @@ body > footer .copyright {
 .container {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 .container .repo-selected {
   text-align: center;

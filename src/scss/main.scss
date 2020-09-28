@@ -17,6 +17,7 @@ body {
   & > footer {
     padding-bottom: 8vh;
     flex: 0 0 auto;
+
     .copyright {
       text-align: center;
     }
@@ -39,16 +40,20 @@ body {
     border: 1px solid cadetblue;
     flex-basis: 31%;
   }
+
   .stars-header {
     flex-basis: 11%;
     background-color: lightblue;
     border: 1px solid cadetblue;
+
   }
+
   .commit-header {
     background-color: lightblue;
     border: 1px solid cadetblue;
     flex-basis: 21%;
   }
+
   .link-header {
     background-color: lightblue;
     border: 1px solid cadetblue;
@@ -68,21 +73,25 @@ body {
     .repo-name {
       border: 1px solid cadetblue;
       flex-basis: 31%;
+      word-break: break-all;
     }
 
     .repo-stars {
       border: 1px solid cadetblue;
       flex-basis: 11%;
+      word-break: break-all;
     }
 
     .repo-last-commit {
       border: 1px solid cadetblue;
       flex-basis: 21%;
+      word-break: break-all;
     }
 
     .repo-link {
       border: 1px solid cadetblue;
       flex-basis: 21%;
+      word-break: break-all;
     }
   }
 }
@@ -108,6 +117,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
+  width: 100%;
 
   .repo-selected {
     text-align: center;
